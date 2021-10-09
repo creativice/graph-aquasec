@@ -17,10 +17,10 @@ export function createAccountEntity(data: AquaSecAccount): Entity {
         _class: Entities.ACCOUNT._class,
         id: data.id.toString(),
         name: data.id.toString(),
-        owner: data.root_user,
+        manager: data.root_user,
         createdOn: parseTimePropertyValue(data.created),
 
-        stripeId: data.stripe_id,
+        stripeId: data.stripe_id || undefined,
         trialEnd: parseTimePropertyValue(data.trial_end),
         currentPlan: data.current_plan,
         additionalCredits: data.additional_credits,
