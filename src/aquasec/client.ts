@@ -26,10 +26,27 @@ type HandleFailedRequestFn = (response: Response) => Error;
 interface PaginatedApiParams {
   limit?: number;
   offset?: number;
+  expandGroups?: boolean;
 }
 
 function getUnixTimestamp(): number {
   return Math.floor(new Date().getTime() / 1000);
+}
+
+function withoutUndefinedProperties(
+  obj: Record<string, any>,
+): Record<string, any> {
+  const newObj: Record<string, any> = {};
+
+  for (const key in obj) {
+    const val = obj[key];
+
+    if (val !== undefined) {
+      newObj[key] = val;
+    }
+  }
+
+  return newObj;
 }
 
 function buildRequestHmacSignature(key: string, chunk: string) {
@@ -41,7 +58,9 @@ function buildRequestHmacSignature(key: string, chunk: string) {
 }
 
 function withQs(path: string, qsParams: any | undefined) {
-  return qsParams ? `${path}?${qs.stringify(qsParams)}` : path;
+  return qsParams
+    ? `${path}?${qs.stringify(withoutUndefinedProperties(qsParams))}`
+    : path;
 }
 
 export class AquaSecClient {
@@ -116,11 +135,28 @@ export class AquaSecClient {
     });
   }
 
+  async listGroups(params?: PaginatedApiParams): Promise<any[]> {
+    return this.request({
+      method: 'GET',
+      path: `/v2/groups`,
+      qsParams: params,
+    });
+  }
+
   async listUsers(params?: PaginatedApiParams): Promise<AquaSecUser[]> {
+    const requestParams: Record<string, any> = {
+      limit: params?.limit,
+      offset: params?.offset,
+    };
+
+    if (params?.expandGroups) {
+      requestParams.expand = 'group';
+    }
+
     return this.request({
       method: 'GET',
       path: `/v2/users`,
-      qsParams: params,
+      qsParams: requestParams,
     });
   }
 }

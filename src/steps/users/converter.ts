@@ -7,12 +7,16 @@ import { AquaSecUser } from '../../aquasec/types';
 
 import { Entities } from '../constants';
 
+export function buildUserEntityKey(data: AquaSecUser) {
+  return `aquasec_user:${data.id}`;
+}
+
 export function createUserEntity(data: AquaSecUser): Entity {
   return createIntegrationEntity({
     entityData: {
       source: data,
       assign: {
-        _key: `aquasec_user:${data.id}`,
+        _key: buildUserEntityKey(data),
         _type: Entities.USER._type,
         _class: Entities.USER._class,
         createdOn: parseTimePropertyValue(data.created),

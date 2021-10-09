@@ -33,4 +33,15 @@ export type AquaSecUser = {
   account_admin: boolean;
   created: string;
   multiaccount: boolean;
+
+  /**
+   * Included when "list users" API call has group expansion enabled
+   */
+  groups?: AquaSecGroup[];
+};
+
+export type AquaSecGroup = {
+  id: number;
+  name: string;
+  created: string;
 };

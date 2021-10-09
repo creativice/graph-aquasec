@@ -70,6 +70,48 @@ Object {
     },
     Object {
       "_class": Array [
+        "Group",
+      ],
+      "_key": "aquasec_group:12022",
+      "_rawData": Array [
+        Object {
+          "name": "default",
+          "rawData": Object {
+            "created": "2021-10-09T00:36:24.000Z",
+            "id": 12022,
+            "name": "Default",
+          },
+        },
+      ],
+      "_type": "aquasec_group",
+      "createdOn": 1633739784000,
+      "displayName": "Default",
+      "id": "12022",
+      "name": "Default",
+    },
+    Object {
+      "_class": Array [
+        "Group",
+      ],
+      "_key": "aquasec_group:12028",
+      "_rawData": Array [
+        Object {
+          "name": "default",
+          "rawData": Object {
+            "created": "2021-10-09T15:56:46.000Z",
+            "id": 12028,
+            "name": "j1-test",
+          },
+        },
+      ],
+      "_type": "aquasec_group",
+      "createdOn": 1633795006000,
+      "displayName": "j1-test",
+      "id": "12028",
+      "name": "j1-test",
+    },
+    Object {
+      "_class": Array [
         "User",
       ],
       "_key": "aquasec_user:22971",
@@ -83,6 +125,18 @@ Object {
             "csp_roles": null,
             "dashboard": null,
             "email": "austin.kelleher@jupiterone.dev",
+            "groups": Array [
+              Object {
+                "created": "2021-10-09T00:36:24.000Z",
+                "id": 12022,
+                "name": "Default",
+              },
+              Object {
+                "created": "2021-10-09T15:56:46.000Z",
+                "id": 12028,
+                "name": "j1-test",
+              },
+            ],
             "id": 22971,
             "multiaccount": false,
             "password_reset": false,
@@ -125,6 +179,18 @@ Object {
             "csp_roles": null,
             "dashboard": null,
             "email": "austin.kelleher+j1test@jupiterone.dev",
+            "groups": Array [
+              Object {
+                "created": "2021-10-09T00:36:24.000Z",
+                "id": 12022,
+                "name": "Default",
+              },
+              Object {
+                "created": "2021-10-09T15:56:46.000Z",
+                "id": 12028,
+                "name": "j1-test",
+              },
+            ],
             "id": 22977,
             "multiaccount": false,
             "password_reset": false,
@@ -157,6 +223,22 @@ Object {
     Object {
       "_class": "HAS",
       "_fromEntityKey": "aquasec_account:10630",
+      "_key": "aquasec_account:10630|has|aquasec_group:12022",
+      "_toEntityKey": "aquasec_group:12022",
+      "_type": "aquasec_account_has_group",
+      "displayName": "HAS",
+    },
+    Object {
+      "_class": "HAS",
+      "_fromEntityKey": "aquasec_account:10630",
+      "_key": "aquasec_account:10630|has|aquasec_group:12028",
+      "_toEntityKey": "aquasec_group:12028",
+      "_type": "aquasec_account_has_group",
+      "displayName": "HAS",
+    },
+    Object {
+      "_class": "HAS",
+      "_fromEntityKey": "aquasec_account:10630",
       "_key": "aquasec_account:10630|has|aquasec_user:22971",
       "_toEntityKey": "aquasec_user:22971",
       "_type": "aquasec_account_has_user",
@@ -170,13 +252,48 @@ Object {
       "_type": "aquasec_account_has_user",
       "displayName": "HAS",
     },
+    Object {
+      "_class": "HAS",
+      "_fromEntityKey": "aquasec_group:12022",
+      "_key": "aquasec_group:12022|has|aquasec_user:22971",
+      "_toEntityKey": "aquasec_user:22971",
+      "_type": "aquasec_group_has_user",
+      "displayName": "HAS",
+    },
+    Object {
+      "_class": "HAS",
+      "_fromEntityKey": "aquasec_group:12028",
+      "_key": "aquasec_group:12028|has|aquasec_user:22971",
+      "_toEntityKey": "aquasec_user:22971",
+      "_type": "aquasec_group_has_user",
+      "displayName": "HAS",
+    },
+    Object {
+      "_class": "HAS",
+      "_fromEntityKey": "aquasec_group:12022",
+      "_key": "aquasec_group:12022|has|aquasec_user:22977",
+      "_toEntityKey": "aquasec_user:22977",
+      "_type": "aquasec_group_has_user",
+      "displayName": "HAS",
+    },
+    Object {
+      "_class": "HAS",
+      "_fromEntityKey": "aquasec_group:12028",
+      "_key": "aquasec_group:12028|has|aquasec_user:22977",
+      "_toEntityKey": "aquasec_user:22977",
+      "_type": "aquasec_group_has_user",
+      "displayName": "HAS",
+    },
   ],
   "encounteredTypes": Array [
     "aquasec_account",
+    "aquasec_group",
+    "aquasec_account_has_group",
     "aquasec_user",
     "aquasec_account_has_user",
+    "aquasec_group_has_user",
   ],
-  "numCollectedEntities": 3,
-  "numCollectedRelationships": 2,
+  "numCollectedEntities": 5,
+  "numCollectedRelationships": 8,
 }
 `;
