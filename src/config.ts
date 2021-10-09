@@ -2,7 +2,9 @@ import {
   IntegrationExecutionContext,
   IntegrationInstanceConfigFieldMap,
   IntegrationInstanceConfig,
+  IntegrationValidationError,
 } from '@jupiterone/integration-sdk-core';
+import { createApiClient } from './aquasec/jupiterone';
 
 /**
  * A type describing the configuration fields required to execute the
@@ -47,7 +49,16 @@ export interface IntegrationConfig extends IntegrationInstanceConfig {
 }
 
 export async function validateInvocation(
-  context: IntegrationExecutionContext<IntegrationInstanceConfig>,
+  context: IntegrationExecutionContext<IntegrationConfig>,
 ) {
-  await Promise.resolve();
+  const { config } = context.instance;
+
+  if (!config.apiKey || !config.apiSecret || !config.accountId) {
+    throw new IntegrationValidationError(
+      'Config requires all of {apiKey, apiSecret, accountId}',
+    );
+  }
+
+  const apiClient = createApiClient(context);
+  await apiClient.getAccount(config.accountId);
 }

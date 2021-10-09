@@ -1,12 +1,12 @@
 import {
+  IntegrationExecutionContext,
   IntegrationProviderAPIError,
-  IntegrationStepExecutionContext,
 } from '@jupiterone/integration-sdk-core';
 import { IntegrationConfig } from '../config';
 import { AquaSecClient } from './client';
 
 export function createApiClient(
-  context: IntegrationStepExecutionContext<IntegrationConfig>,
+  context: IntegrationExecutionContext<IntegrationConfig>,
 ) {
   return new AquaSecClient({
     // TODO: Add support for a custom `endpoint`
