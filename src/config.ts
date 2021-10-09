@@ -1,10 +1,8 @@
 import {
   IntegrationExecutionContext,
-  IntegrationValidationError,
   IntegrationInstanceConfigFieldMap,
   IntegrationInstanceConfig,
 } from '@jupiterone/integration-sdk-core';
-import { createAPIClient } from './client';
 
 /**
  * A type describing the configuration fields required to execute the
@@ -20,43 +18,17 @@ import { createAPIClient } from './client';
  * managed environment. For example, in JupiterOne, users configure
  * `instance.config` in a UI.
  */
-export const instanceConfigFields: IntegrationInstanceConfigFieldMap = {
-  clientId: {
-    type: 'string',
-  },
-  clientSecret: {
-    type: 'string',
-    mask: true,
-  },
-};
+export const instanceConfigFields: IntegrationInstanceConfigFieldMap = {};
 
 /**
  * Properties provided by the `IntegrationInstance.config`. This reflects the
  * same properties defined by `instanceConfigFields`.
  */
-export interface IntegrationConfig extends IntegrationInstanceConfig {
-  /**
-   * The provider API client ID used to authenticate requests.
-   */
-  clientId: string;
-
-  /**
-   * The provider API client secret used to authenticate requests.
-   */
-  clientSecret: string;
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface IntegrationConfig extends IntegrationInstanceConfig {}
 
 export async function validateInvocation(
-  context: IntegrationExecutionContext<IntegrationConfig>,
+  context: IntegrationExecutionContext<IntegrationInstanceConfig>,
 ) {
-  const { config } = context.instance;
-
-  if (!config.clientId || !config.clientSecret) {
-    throw new IntegrationValidationError(
-      'Config requires all of {clientId, clientSecret}',
-    );
-  }
-
-  const apiClient = createAPIClient(config);
-  await apiClient.verifyAuthentication();
+  await Promise.resolve();
 }

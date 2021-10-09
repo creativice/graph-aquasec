@@ -1,6 +1,6 @@
-import { accountSteps } from './account';
-import { accessSteps } from './access';
+import { IntegrationStep } from '@jupiterone/integration-sdk-core';
+import { IntegrationConfig } from '../config';
 
-const integrationSteps = [...accountSteps, ...accessSteps];
+const integrationSteps: IntegrationStep<IntegrationConfig>[] = [];
 
 export { integrationSteps };

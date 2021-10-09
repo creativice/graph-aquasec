@@ -1,7 +1,7 @@
 {
-  "name": "@jupiterone/integration-template",
+  "name": "@jupiterone/graph-aquasec",
   "version": "0.0.0",
-  "description": "A JupiterOne Integration",
+  "description": "A graph conversion tool for https://aquasec.com/",
   "license": "MPL-2.0",
   "main": "src/index.js",
   "types": "src/index.d.ts",
@@ -16,21 +16,25 @@
     "graph": "j1-integration visualize",
     "graph:types": "j1-integration visualize-types",
     "graph:spec": "j1-integration visualize-types --project-path docs/spec --output-file ./.j1-integration/types-graph/index.spec.html",
+    "validate:questions:dry": "j1-integration validate-question-file --dry-run",
+    "validate:questions": "j1-integration validate-question-file -a $MANAGED_QUESTIONS_JUPITERONE_ACCOUNT_ID -k $MANAGED_QUESTIONS_JUPITERONE_API_KEY",
     "lint": "eslint . --cache --fix --ext .ts,.tsx",
     "format": "prettier --write '**/*.{ts,js,json,css,md,yml}'",
     "type-check": "tsc",
-    "test": "jest",
+    "test": "yarn validate:questions:dry && yarn jest",
     "test:env": "LOAD_ENV=1 yarn test",
-    "test:ci": "yarn lint && yarn type-check && yarn test",
-    "build": "tsc -p tsconfig.dist.json --declaration && cp README.md dist/README.md",
+    "test:ci": "yarn validate:questions && yarn lint && yarn type-check",
+    "prebuild": "rm -rf ./dist",
+    "build": "yarn tsc -p tsconfig.dist.json --declaration",
+    "postbuild": "cp README.md dist/README.md && cp -R jupiterone dist/",
     "prepush": "yarn lint && yarn type-check && jest --changedSince main"
   },
   "peerDependencies": {
-    "@jupiterone/integration-sdk-core": "^6.19.0"
+    "@jupiterone/integration-sdk-core": "^7.0.0"
   },
   "devDependencies": {
-    "@jupiterone/integration-sdk-core": "^6.19.0",
-    "@jupiterone/integration-sdk-dev-tools": "^6.19.0",
-    "@jupiterone/integration-sdk-testing": "^6.19.0"
+    "@jupiterone/integration-sdk-core": "^7.0.0",
+    "@jupiterone/integration-sdk-dev-tools": "^7.0.0",
+    "@jupiterone/integration-sdk-testing": "^7.0.0"
   }
 }
