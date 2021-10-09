@@ -18,14 +18,33 @@ import {
  * managed environment. For example, in JupiterOne, users configure
  * `instance.config` in a UI.
  */
-export const instanceConfigFields: IntegrationInstanceConfigFieldMap = {};
+export const instanceConfigFields: IntegrationInstanceConfigFieldMap = {
+  /**
+   * NOTE: Aqua calls this an "API Key", but it is essentially an auto-generated
+   * API key _name_. The value of this property is _visible_ from the Aqua
+   * console. The actual sensitive token is the `apiSecret` described below.
+   */
+  apiKey: {
+    type: 'string',
+  },
+  apiSecret: {
+    type: 'string',
+    mask: true,
+  },
+  accountId: {
+    type: 'string',
+  },
+};
 
 /**
  * Properties provided by the `IntegrationInstance.config`. This reflects the
  * same properties defined by `instanceConfigFields`.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IntegrationConfig extends IntegrationInstanceConfig {}
+export interface IntegrationConfig extends IntegrationInstanceConfig {
+  apiKey: string;
+  apiSecret: string;
+  accountId: string;
+}
 
 export async function validateInvocation(
   context: IntegrationExecutionContext<IntegrationInstanceConfig>,
