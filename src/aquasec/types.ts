@@ -45,3 +45,16 @@ export type AquaSecGroup = {
   name: string;
   created: string;
 };
+
+export type AquaSecApiKey = {
+  id: number;
+  access_key: string;
+  description: string;
+  whitelisted: boolean;
+  scans_per_month: number;
+  created: string;
+  account_id: number;
+  group_id: number;
+  iac_token: boolean;
+  ip_addresses: string[] | null;
+};

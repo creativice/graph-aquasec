@@ -8,10 +8,11 @@ export const Steps = {
   ACCOUNT: 'fetch-account',
   USERS: 'fetch-users',
   GROUPS: 'fetch-groups',
+  API_KEYS: 'fetch-api-keys',
 };
 
 export const Entities: Record<
-  'ACCOUNT' | 'USER' | 'GROUP',
+  'ACCOUNT' | 'USER' | 'GROUP' | 'API_KEY',
   StepEntityMetadata
 > = {
   ACCOUNT: {
@@ -29,10 +30,18 @@ export const Entities: Record<
     _type: 'aquasec_group',
     _class: ['Group'],
   },
+  API_KEY: {
+    resourceName: 'API Key',
+    _type: 'aquasec_api_key',
+    _class: ['AccessKey'],
+  },
 };
 
 export const Relationships: Record<
-  'ACCOUNT_HAS_USER' | 'ACCOUNT_HAS_GROUP' | 'GROUP_HAS_USER',
+  | 'ACCOUNT_HAS_USER'
+  | 'ACCOUNT_HAS_GROUP'
+  | 'GROUP_HAS_USER'
+  | 'ACCOUNT_HAS_API_KEY',
   StepRelationshipMetadata
 > = {
   ACCOUNT_HAS_USER: {
@@ -52,5 +61,11 @@ export const Relationships: Record<
     sourceType: Entities.GROUP._type,
     _class: RelationshipClass.HAS,
     targetType: Entities.USER._type,
+  },
+  ACCOUNT_HAS_API_KEY: {
+    _type: 'aquasec_account_has_api_key',
+    sourceType: Entities.ACCOUNT._type,
+    _class: RelationshipClass.HAS,
+    targetType: Entities.API_KEY._type,
   },
 };

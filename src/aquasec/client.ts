@@ -1,7 +1,12 @@
 import * as crypto from 'crypto';
 import * as qs from 'querystring';
 import fetch, { Response } from 'node-fetch';
-import { AquaSecAccount, AquaSecGroup, AquaSecUser } from './types';
+import {
+  AquaSecAccount,
+  AquaSecApiKey,
+  AquaSecGroup,
+  AquaSecUser,
+} from './types';
 
 export interface CreateAquaSecClientParams {
   apiKey: string;
@@ -157,6 +162,14 @@ export class AquaSecClient {
       method: 'GET',
       path: `/v2/users`,
       qsParams: requestParams,
+    });
+  }
+
+  async listApiKeys(params?: PaginatedApiParams): Promise<AquaSecApiKey[]> {
+    return this.request({
+      method: 'GET',
+      path: `/v2/apikeys`,
+      qsParams: params,
     });
   }
 }

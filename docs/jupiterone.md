@@ -98,6 +98,7 @@ The following entities are created:
 
 | Resources | Entity `_type`    | Entity `_class` |
 | --------- | ----------------- | --------------- |
+| API Key   | `aquasec_api_key` | `AccessKey`     |
 | Account   | `aquasec_account` | `Account`       |
 | Group     | `aquasec_group`   | `Group`         |
 | User      | `aquasec_user`    | `User`          |
@@ -108,6 +109,7 @@ The following relationships are created:
 
 | Source Entity `_type` | Relationship `_class` | Target Entity `_type` |
 | --------------------- | --------------------- | --------------------- |
+| `aquasec_account`     | **HAS**               | `aquasec_api_key`     |
 | `aquasec_account`     | **HAS**               | `aquasec_group`       |
 | `aquasec_account`     | **HAS**               | `aquasec_user`        |
 | `aquasec_group`       | **HAS**               | `aquasec_user`        |
