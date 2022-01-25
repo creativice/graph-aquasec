@@ -1,10 +1,10 @@
 import {
   IntegrationExecutionContext,
-  IntegrationValidationError,
   IntegrationInstanceConfigFieldMap,
   IntegrationInstanceConfig,
+  IntegrationValidationError,
 } from '@jupiterone/integration-sdk-core';
-import { createAPIClient } from './client';
+import { createApiClient } from './aquasec/jupiterone';
 
 /**
  * A type describing the configuration fields required to execute the
@@ -21,12 +21,20 @@ import { createAPIClient } from './client';
  * `instance.config` in a UI.
  */
 export const instanceConfigFields: IntegrationInstanceConfigFieldMap = {
-  clientId: {
+  /**
+   * NOTE: Aqua calls this an "API Key", but it is essentially an auto-generated
+   * API key _name_. The value of this property is _visible_ from the Aqua
+   * console. The actual sensitive token is the `apiSecret` described below.
+   */
+  apiKey: {
     type: 'string',
   },
-  clientSecret: {
+  apiSecret: {
     type: 'string',
     mask: true,
+  },
+  accountId: {
+    type: 'string',
   },
 };
 
@@ -35,15 +43,9 @@ export const instanceConfigFields: IntegrationInstanceConfigFieldMap = {
  * same properties defined by `instanceConfigFields`.
  */
 export interface IntegrationConfig extends IntegrationInstanceConfig {
-  /**
-   * The provider API client ID used to authenticate requests.
-   */
-  clientId: string;
-
-  /**
-   * The provider API client secret used to authenticate requests.
-   */
-  clientSecret: string;
+  apiKey: string;
+  apiSecret: string;
+  accountId: string;
 }
 
 export async function validateInvocation(
@@ -51,12 +53,12 @@ export async function validateInvocation(
 ) {
   const { config } = context.instance;
 
-  if (!config.clientId || !config.clientSecret) {
+  if (!config.apiKey || !config.apiSecret || !config.accountId) {
     throw new IntegrationValidationError(
-      'Config requires all of {clientId, clientSecret}',
+      'Config requires all of {apiKey, apiSecret, accountId}',
     );
   }
 
-  const apiClient = createAPIClient(config);
-  await apiClient.verifyAuthentication();
+  const apiClient = createApiClient(context);
+  await apiClient.getAccount(config.accountId);
 }

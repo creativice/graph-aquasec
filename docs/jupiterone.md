@@ -96,11 +96,12 @@ https://github.com/JupiterOne/sdk/blob/main/docs/integrations/development.md
 
 The following entities are created:
 
-| Resources | Entity `_type` | Entity `_class` |
-| --------- | -------------- | --------------- |
-| Account   | `acme_account` | `Account`       |
-| User      | `acme_user`    | `User`          |
-| UserGroup | `acme_group`   | `UserGroup`     |
+| Resources | Entity `_type`    | Entity `_class` |
+| --------- | ----------------- | --------------- |
+| API Key   | `aquasec_api_key` | `AccessKey`     |
+| Account   | `aquasec_account` | `Account`       |
+| Group     | `aquasec_group`   | `Group`         |
+| User      | `aquasec_user`    | `User`          |
 
 ### Relationships
 
@@ -108,9 +109,10 @@ The following relationships are created:
 
 | Source Entity `_type` | Relationship `_class` | Target Entity `_type` |
 | --------------------- | --------------------- | --------------------- |
-| `acme_account`        | **HAS**               | `acme_group`          |
-| `acme_account`        | **HAS**               | `acme_user`           |
-| `acme_group`          | **HAS**               | `acme_user`           |
+| `aquasec_account`     | **HAS**               | `aquasec_api_key`     |
+| `aquasec_account`     | **HAS**               | `aquasec_group`       |
+| `aquasec_account`     | **HAS**               | `aquasec_user`        |
+| `aquasec_group`       | **HAS**               | `aquasec_user`        |
 
 <!--
 ********************************************************************************
