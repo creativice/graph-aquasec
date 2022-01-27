@@ -7,3 +7,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## 1.0.0 - 2022-01-27
+
+### Added
+
+- Initial `@jupiterone/graph-aquasec` release.
+- Ingestion of `aquasec_api_key`
+- Ingestion of `aquasec_account`
+- Ingestion of `aquasec_group`
+- Ingestion of `aquasec_user`
