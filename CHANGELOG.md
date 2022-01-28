@@ -8,7 +8,14 @@ and this project adheres to
 
 ## [Unreleased]
 
-## 1.0.0 - 2022-01-27
+### Fixed
+
+- Fixed questions.yaml file not being included in build.
+- Upgraded to latest SDK.
+- Updated documentation.
+- Prettier formatting fixes.
+
+## [1.0.0] - 2022-01-27
 
 ### Added
 

@@ -35,6 +35,7 @@ export function createUserEntity(data: AquaSecUser): Entity {
         sendNewPlugins: data.send_new_plugins,
         sendNewRisks: data.send_new_risks,
         multiaccount: data.multiaccount,
+        active: true, //We don't have an active flag to use, but this is requred...
       },
     },
   });

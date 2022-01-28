@@ -6,7 +6,8 @@
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "files": [
-    "src"
+    "src",
+    "jupiterone"
   ],
   "publishConfig": {
     "access": "public"
@@ -25,17 +26,17 @@
     "test:env": "LOAD_ENV=1 yarn test",
     "test:ci": "yarn validate:questions && yarn lint && yarn type-check",
     "prebuild": "rm -rf ./dist",
-    "build": "yarn tsc -p tsconfig.dist.json --declaration",
+    "build": "tsc -p tsconfig.dist.json --declaration && cp README.md dist/README.md && cp -r jupiterone/ dist/jupiterone/",
     "postbuild": "cp README.md dist/README.md && cp -R jupiterone dist/",
     "prepush": "yarn lint && yarn type-check && jest --changedSince main"
   },
   "peerDependencies": {
-    "@jupiterone/integration-sdk-core": "^7.0.0"
+    "@jupiterone/integration-sdk-core": "^8.2.0"
   },
   "devDependencies": {
-    "@jupiterone/integration-sdk-core": "^7.0.0",
-    "@jupiterone/integration-sdk-dev-tools": "^7.0.0",
-    "@jupiterone/integration-sdk-testing": "^7.0.0",
+    "@jupiterone/integration-sdk-core": "^8.2.0",
+    "@jupiterone/integration-sdk-dev-tools": "^8.2.0",
+    "@jupiterone/integration-sdk-testing": "^8.2.0",
     "@types/node-fetch": "^2"
   },
   "dependencies": {
