@@ -1,6 +1,6 @@
 {
   "name": "@jupiterone/graph-aquasec",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A graph conversion tool for https://aquasec.com/",
   "license": "MPL-2.0",
   "main": "src/index.js",
