@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.1] - 2022-01-31
+
 ### Fixed
 
 - Fixed questions.yaml file not being included in build.
