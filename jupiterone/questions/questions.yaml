@@ -12,5 +12,4 @@ questions:
         RETURN   
         R.displayName,R.sendAnnouncements,R.sendNewPlugins
   tags:
-  - Acquasec
-  
+  - Acquasec 
