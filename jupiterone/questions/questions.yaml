@@ -5,7 +5,7 @@ questions:
 - id: integration-question-Acquasec-user-that-send-security-results-or-sendNewRisks
   title: Which Acquasec user that sendScanResults or endNewRisks are set to true?
   description:
-    Returns all Acquasec users that sendScanResults or sendNewRisks that are activated.
+    Returns all Acquasec users that sendScanResults or sendNewRisks.
   queries:
   - query: |
       FIND aquasec_user WITH sendNewRisks = true OR sendScanResults = true AS R
