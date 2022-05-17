@@ -3,7 +3,7 @@ sourceId: managed:aquasec
 integrationDefinitionId: "${integration_definition_id}"
 questions: 
 - id: integration-question-Acquasec-user-that-send-security-results-or-sendNewRisks
-  title: Which Acquasec user that sendScanResults or endNewRisks are set to true?
+  title: Which Acquasec user that sendScanResults or sendNewRisks are set to true?
   description:
     Returns all Acquasec users that sendScanResults or sendNewRisks.
   queries:
