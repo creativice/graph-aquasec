@@ -2,13 +2,13 @@
 sourceId: managed:aquasec
 integrationDefinitionId: "${integration_definition_id}"
 questions: 
-- id: integration-question-Acquasec-send-security-results-or-endNewRisks
+- id: integration-question-Acquasec-send-security-results-or-sendNewRisks
   title: Which Acquasec sendScanResults or endNewRisks are set to true?
   description:
-    Finds all Acquasec sendScanResults or endNewRisks that are activated.
+    Finds all Acquasec sendScanResults or sendNewRisks that are activated.
   queries:
   - query: |
-      FIND aquasec_user WITH endNewRisks = true OR sendScanResults = true AS R
+      FIND aquasec_user WITH sendNewRisks = true OR sendScanResults = true AS R
         RETURN   
         R.displayName,R.sendAnnouncements,R.sendNewPlugins
   tags:
