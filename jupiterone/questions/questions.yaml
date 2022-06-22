@@ -9,7 +9,7 @@ questions:
   queries:
   - query: |
       FIND aquasec_user WITH sendNewRisks = true OR sendScanResults = true AS R
-        RETURN   
+      RETURN   
         R.displayName,R.sendAnnouncements,R.sendNewPlugins
   tags:
   - Acquasec 
