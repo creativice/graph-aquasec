@@ -1,4 +1,15 @@
 ---
 sourceId: managed:aquasec
 integrationDefinitionId: "${integration_definition_id}"
-questions: []
+questions: 
+- id: integration-question-Acquasec-user-that-send-security-results-or-sendNewRisks
+  title: Which Aqua Security user that sendScanResults or sendNewRisks are set to true?
+  description:
+    Returns all Aqua Security users that sendScanResults or sendNewRisks.
+  queries:
+  - query: |
+      FIND aquasec_user WITH sendNewRisks = true OR sendScanResults = true AS R
+      RETURN   
+        R.displayName,R.sendAnnouncements,R.sendNewPlugins
+  tags:
+  - Acquasec 
