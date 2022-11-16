@@ -22,6 +22,8 @@ Using the above values you noted down, provide the following three items in a
 API_KEY=
 API_SECRET=
 ACCOUNT_ID=
+ACCOUNT_EMAIL=
+ACCOUNT_PASSWORD=
 ```
 
 ## Authentication

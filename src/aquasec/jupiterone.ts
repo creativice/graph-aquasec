@@ -13,6 +13,10 @@ export function createApiClient(
     apiKey: context.instance.config.apiKey,
     apiSecret: context.instance.config.apiSecret,
 
+    accountId: context.instance.config.accountId,
+    accountEmail: context.instance.config.accountEmail,
+    accountPassword: context.instance.config.accountPassword,
+
     handleFailedRequest(response): Error {
       context.logger.info(
         {

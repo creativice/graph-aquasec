@@ -36,6 +36,13 @@ export const instanceConfigFields: IntegrationInstanceConfigFieldMap = {
   accountId: {
     type: 'string',
   },
+  accountEmail: {
+    type: 'string',
+  },
+  accountPassword: {
+    type: 'string',
+    mask: true,
+  },
 };
 
 /**
@@ -46,6 +53,8 @@ export interface IntegrationConfig extends IntegrationInstanceConfig {
   apiKey: string;
   apiSecret: string;
   accountId: string;
+  accountEmail: string;
+  accountPassword: string;
 }
 
 export async function validateInvocation(
@@ -53,9 +62,9 @@ export async function validateInvocation(
 ) {
   const { config } = context.instance;
 
-  if (!config.apiKey || !config.apiSecret || !config.accountId) {
+  if (!config.apiKey || !config.apiSecret || !config.accountId || !config.accountEmail || !config.accountPassword) {
     throw new IntegrationValidationError(
-      'Config requires all of {apiKey, apiSecret, accountId}',
+      'Config requires all of {apiKey, apiSecret, accountId, accountEmail, accountPassword}',
     );
   }
 

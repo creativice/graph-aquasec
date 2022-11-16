@@ -2,15 +2,15 @@
 
 ## Aqua Security + JupiterOne Integration Benefits
 
-- Visualize Aqua Security accounts, groups, users, and API keys in the JupiterOne
-  graph.
+- Visualize Aqua Security accounts, groups, users, detections, and API keys in
+  the JupiterOne graph.
 - Map Aqua Security users to employees in your JupiterOne account.
 - Monitor changes to Aqua Security users using JupiterOne alerts.
 
 ## How it Works
 
-- JupiterOne periodically fetches account, group, API key, and user data from
-  Aqua Security to update the graph.
+- JupiterOne periodically fetches account, group, API key, detection, and user
+  data from Aqua Security to update the graph.
 - Write JupiterOne queries to review and monitor updates to the graph, or
   leverage existing queries.
 - Configure alerts to take action when JupiterOne graph changes, or leverage
@@ -18,8 +18,8 @@
 
 ## Requirements
 
-- Aqua Security uses generated API keys that consist of a key and secret value to
-  authenticate calls to their API.
+- Aqua Security uses generated API keys that consist of a key and secret value
+  to authenticate calls to their API.
 - JupiterOne requires an API key, secret, and the Account ID in order to make
   the necessary API calls. You must have a user with sufficient permissions in
   Aqua Security to generate an API key to get this information.
@@ -52,6 +52,8 @@ If you need help with this integration, please contact
   needs. You may leave this as `DISABLED` and manually execute the integration.
 - Enter the **API Key** and **API Secret** generated for use by JupiterOne.
 - Enter the **Account ID** for your Aqua Security account.
+- Enter the **Account email** for your Aqua Security account.
+- Enter the **Account password** for your Aqua Security account.
 
 4. Click **Create Configuration** once all values are provided.
 
@@ -84,12 +86,14 @@ https://github.com/JupiterOne/sdk/blob/main/docs/integrations/development.md
 
 The following entities are created:
 
-| Resources | Entity `_type`    | Entity `_class` |
-| --------- | ----------------- | --------------- |
-| API Key   | `aquasec_api_key` | `AccessKey`     |
-| Account   | `aquasec_account` | `Account`       |
-| Group     | `aquasec_group`   | `Group`         |
-| User      | `aquasec_user`    | `User`          |
+| Resources  | Entity `_type`       | Entity `_class` |
+| ---------- | -------------------- | --------------- |
+| API Key    | `aquasec_api_key`    | `AccessKey`     |
+| Account    | `aquasec_account`    | `Account`       |
+| Detection  | `aquasec_detection`  | `Finding`       |
+| Group      | `aquasec_group`      | `Group`         |
+| Repository | `aquasec_repository` | `CodeRepo`      |
+| User       | `aquasec_user`       | `User`          |
 
 ### Relationships
 
@@ -99,8 +103,10 @@ The following relationships are created:
 | --------------------- | --------------------- | --------------------- |
 | `aquasec_account`     | **HAS**               | `aquasec_api_key`     |
 | `aquasec_account`     | **HAS**               | `aquasec_group`       |
+| `aquasec_account`     | **HAS**               | `aquasec_repository`  |
 | `aquasec_account`     | **HAS**               | `aquasec_user`        |
 | `aquasec_group`       | **HAS**               | `aquasec_user`        |
+| `aquasec_repository`  | **HAS**               | `aquasec_detection`   |
 
 <!--
 ********************************************************************************
