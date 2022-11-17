@@ -15,11 +15,15 @@ if (process.env.LOAD_ENV) {
 const DEFAULT_API_KEY = 'dummy-api-key';
 const DEFAULT_API_SECRET = 'dummy-api-secret';
 const DEFAULT_ACCOUNT_ID = '10630';
+const DEFAULT_ACCOUNT_EMAIL = 'dummy@email.com';
+const DEFAULT_ACCOUNT_PASSWORD = 'dummy-password';
 
 export const integrationConfig: IntegrationConfig = {
   apiKey: process.env.API_KEY || DEFAULT_API_KEY,
   apiSecret: process.env.API_SECRET || DEFAULT_API_SECRET,
   accountId: process.env.ACCOUNT_ID || DEFAULT_ACCOUNT_ID,
+  accountEmail: process.env.ACCOUNT_EMAIL || DEFAULT_ACCOUNT_EMAIL,
+  accountPassword: process.env.ACCOUNT_PASSWORD || DEFAULT_ACCOUNT_PASSWORD,
 };
 
 export function withRecording(
